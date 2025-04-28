@@ -1,0 +1,48 @@
+openapi: 3.0.3
+info:
+  description: Test optional primitive
+  title: Sample API
+  version: 1.0.0
+servers:
+- description: Fake service
+  url: https://example.com/api/v1
+paths:
+  /optional:
+    get:
+      operationId: getOptionalAge
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptionalPayload'
+          description: Successful optional integer value
+      summary: Get an optional integer value
+  /required:
+    get:
+      operationId: getRequiredAge
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequiredPayload'
+          description: Successful required integer value
+      summary: Get a required integer value
+components:
+  schemas:
+    OptionalPayload:
+      properties:
+        age:
+          description: Optional Age
+          type: integer
+      type: object
+    RequiredPayload:
+      properties:
+        age:
+          description: Required Age
+          type: integer
+      required:
+      - age
+      type: object
+
